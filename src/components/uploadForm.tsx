@@ -26,7 +26,7 @@ class UploadForm extends React.Component<IUploadForm> {
     sendBlobs(): void {
         this.props.sendBlobs(this.blobFiles);
         this.blobFiles = [] as Blob[];
-    }
+    };
 
     onChangeInput(): void {
         if (this.inputFiles.current?.files?.length) {
@@ -42,8 +42,8 @@ class UploadForm extends React.Component<IUploadForm> {
                 reader.onload = () => {
                     const result: string = reader.result as string;
                     console.log(result);
-                    const blob: Blob = new Blob([result], { type: 'text/plain' });
-                    this.blobFiles.push(blob as Blob)
+                    const blob: Blob = new Blob([result], { type: this.fileType });
+                    this.blobFiles.push(blob as Blob);
                     this.fileCount--;
                     if (this.fileCount === 0) {
                         this.sendBlobs();
